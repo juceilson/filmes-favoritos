@@ -22,11 +22,11 @@ import com.example.filmes_favoritos.ui.viewModels.FilmeListViewModel
 
 object NavRoutes {
     const val HOME = "home"
-    const val  FILME_LIST = " filme_list"
-    const val  DETALHES_FILME = " detalhes_filme/{id}"
-    const val  FAVORITOS = " favoritos"
+    const val FILME_LIST = "filme_list"
+    const val DETALHES_FILME = "detalhes_filme/{id}"
+    const val FAVORITOS = "favoritos"
 
-    fun createMovieDetailsRoute(id: String): String = " detalhes_filme/$id"
+    fun createMovieDetailsRoute(id: String): String = "detalhes_filme/$id"
 }
 
 @Composable
@@ -36,16 +36,16 @@ fun FilmesNavegacao(
     val context = LocalContext.current.applicationContext
     val appContainer = (context as App).container
 
-    NavHost( navController = navController, startDestination = NavRoutes.HOME ) {
+    NavHost(navController = navController, startDestination = NavRoutes.HOME) {
 
         composable(NavRoutes.HOME) {
             HomeScreen(
-                onNavigateToMovieList = { navController.navigate(NavRoutes. FILME_LIST) },
-                onNavigateToFavorites = { navController.navigate(NavRoutes. FAVORITOS) }
+                onNavigateToMovieList = { navController.navigate(NavRoutes.FILME_LIST) },
+                onNavigateToFavorites = { navController.navigate(NavRoutes.FAVORITOS) }
             )
         }
 
-        composable(NavRoutes. FILME_LIST) {
+        composable(NavRoutes.FILME_LIST) {
             val filmeListViewModel: FilmeListViewModel = viewModel(
                 factory = FactoryViewModel(appContainer.filmeRepository)
             )
@@ -59,14 +59,14 @@ fun FilmesNavegacao(
         }
 
         composable(
-            route = NavRoutes. DETALHES_FILME,
+            route = NavRoutes.DETALHES_FILME,
             arguments = listOf(
                 navArgument("id") { type = NavType.StringType }
             )
         ) { backStackEntry ->
             val id = backStackEntry.arguments?.getString("id") ?: ""
             val movieDetailsViewModel: DetalhesFilmeViewModel = viewModel(
-                factory = FactoryViewModel(appContainer.filmeRepository)
+                factory = FactoryViewModel(appContainer.filmeRepository, id = id)
             )
             DetalhesFilmeScreen(
                 viewModel = movieDetailsViewModel,
@@ -74,12 +74,12 @@ fun FilmesNavegacao(
             )
         }
 
-        composable(NavRoutes. FAVORITOS) {
-            val  favoritosViewModel: FavoritosViewModel = viewModel(
+        composable(NavRoutes.FAVORITOS) {
+            val favoritosViewModel: FavoritosViewModel = viewModel(
                 factory = FactoryViewModel(appContainer.filmeRepository)
             )
             FavoritosScreen(
-                viewModel =  favoritosViewModel,
+                viewModel = favoritosViewModel,
                 onMovieClick = { id ->
                     navController.navigate(NavRoutes.createMovieDetailsRoute(id))
                 },
