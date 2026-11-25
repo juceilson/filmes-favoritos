@@ -102,9 +102,7 @@ fun FilmeFavoritoItemCard(
                 Text(text = "Gênero: ${filme.genre ?: "N/A"}")
             }
 
-            IconButton(onClick = onDeleteClick) {
-                Text("Excluir")
-            }
+            Button(onClick = onDeleteClick) { Text("Excluir") }
         }
     }
 }
