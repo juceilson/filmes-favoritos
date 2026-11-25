@@ -8,12 +8,12 @@ interface ApiService {
     @GET("/")
     suspend fun searchMovies(
         @Query("s") query: String,
-        @Query("apikey") apiKey: String = "2f43ff0c"
+        @Query("apikey") apiKey: String = "trilogy"
     ): Search
 
     @GET("/")
     suspend fun getMovieDetails(
         @Query("i") id: String,
-        @Query("apikey") apiKey: String = "2f43ff0c"
+        @Query("apikey") apiKey: String = "trilogy"
     ): Filme
 }
