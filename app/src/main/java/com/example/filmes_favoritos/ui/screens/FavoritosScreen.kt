@@ -42,11 +42,11 @@ fun FavoritosScreen(
     val favoritos by viewModel.favoritesState.collectAsState()
 
     Column() {
+        Spacer(modifier = Modifier.padding(20.dp))
         Row(
             horizontalArrangement = Arrangement.spacedBy(4.dp),
             verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.background(color = Color.LightGray)
-                .fillMaxWidth().padding(16.dp)
+            modifier = Modifier.fillMaxWidth().padding(16.dp)
         ) {
             Button(onClick = onNavigateBack) { Text("Voltar") }
             Text("Filmes Favoritos", fontSize = 24.sp)

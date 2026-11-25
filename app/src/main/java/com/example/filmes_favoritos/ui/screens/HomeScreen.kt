@@ -23,9 +23,9 @@ fun HomeScreen(
     onNavigateToFavorites: () -> Unit
 ){
     Column() {
+        Spacer(modifier = Modifier.padding(20.dp))
         Text("App Filmes favoritos", fontSize = 24.sp,
-            modifier = Modifier.background(color = Color.LightGray)
-                .fillMaxWidth().padding(16.dp)
+            modifier = Modifier.fillMaxWidth().padding(16.dp)
         )
 
         Spacer(modifier = Modifier.padding(16.dp))

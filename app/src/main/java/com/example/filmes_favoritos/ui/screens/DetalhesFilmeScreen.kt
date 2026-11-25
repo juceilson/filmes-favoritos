@@ -35,10 +35,10 @@ fun DetalhesFilmeScreen(
     val filme by viewModel.filme.collectAsState()
     val isFavorite by viewModel.isFavorite.collectAsState()
     Column() {
+        Spacer(modifier = Modifier.padding(20.dp))
         Row(horizontalArrangement = Arrangement.spacedBy(4.dp),
             verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.background(color = Color.LightGray)
-                .fillMaxWidth().padding(16.dp)
+            modifier = Modifier.fillMaxWidth().padding(16.dp)
         ) {
             Button(onClick = onNavigateBack) { Text("Voltar") }
             Text(" Detalhes do Filme", fontSize = 24.sp

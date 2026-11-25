@@ -47,15 +47,14 @@ fun FilmeListScreen(
     val filmes by viewModel.filmes.collectAsState()
 
     Column() {
+        Spacer(modifier = Modifier.padding(20.dp))
         Row(horizontalArrangement = Arrangement.spacedBy(4.dp),
             verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.background(color = Color.LightGray)
-                .fillMaxWidth().padding(16.dp)
+            modifier = Modifier.fillMaxWidth().padding(16.dp)
         ){
             Button(onClick = onNavigateBack) { Text("Voltar") }
             Text(" Lista de Filmes", fontSize = 24.sp,
-                modifier = Modifier.background(color = Color.LightGray)
-                    .fillMaxWidth().padding(16.dp)
+                modifier = Modifier.fillMaxWidth().padding(16.dp)
             )
         }
         Column(modifier = Modifier.fillMaxSize().padding(all = 28.dp),
