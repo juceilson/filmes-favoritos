@@ -60,18 +60,26 @@ fun FilmeListScreen(
         Column(modifier = Modifier.fillMaxSize().padding(all = 28.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
-            OutlinedTextField(
-                value = nomeFilme,
-                onValueChange = { viewModel.onSearchChanged(it) },
+            Row(
                 modifier = Modifier.fillMaxWidth(),
-                label = { Text("Buscar filme...") },
-                singleLine = true,
-                keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
-                keyboardActions = KeyboardActions(onSearch = { viewModel.executeSearch() }),
-                trailingIcon = {
-                    Button(onClick = { viewModel.executeSearch() }) { Text("Buscar") }
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                OutlinedTextField(
+                    value = nomeFilme,
+                    onValueChange = { viewModel.onSearchChanged(it) },
+                    modifier = Modifier.weight(1f),
+                    label = { Text("Buscar filme...") },
+                    singleLine = true,
+                    keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
+                    keyboardActions = KeyboardActions(onSearch = { viewModel.executeSearch() })
+                )
+                Button(
+                    onClick = { viewModel.executeSearch() }
+                ) {
+                    Text("Buscar")
                 }
-            )
+            }
 
             Spacer(modifier = Modifier.height(16.dp))
             if (filmes.isEmpty()) {
