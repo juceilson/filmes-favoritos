@@ -16,13 +16,13 @@ class FactoryViewModel(
                 FilmeListViewModel(repository) as T
             }
             modelClass.isAssignableFrom(DetalhesFilmeViewModel::class.java) -> {
-                requireNotNull(id) { "id é requerido para DetalhesFilmeViewModel" }
-                DetalhesFilmeViewModel(repository, id) as T
+                val movieDetailsId = requireNotNull(id) { "id é requerido para DetalhesFilmeViewModel" }
+                DetalhesFilmeViewModel(repository, movieDetailsId) as T
             }
             modelClass.isAssignableFrom(FavoritosViewModel::class.java) -> {
                 FavoritosViewModel(repository) as T
             }
-            else -> throw IllegalArgumentException("classe ViewModel descohecida: ${modelClass.name}")
+            else -> throw IllegalArgumentException("Classe ViewModel desconhecida: ${modelClass.name}")
         }
     }
 }

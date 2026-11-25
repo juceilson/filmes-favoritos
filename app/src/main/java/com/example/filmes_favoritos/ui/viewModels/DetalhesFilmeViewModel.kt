@@ -26,25 +26,27 @@ class DetalhesFilmeViewModel(
             initialValue = false
         )
 
+    init { fetchMovie() }
+
     private fun fetchMovie() {
         viewModelScope.launch(Dispatchers.IO) {
             _filme.value = repository.getMovieDetails(id)
         }
     }
 
-    fun toggleFavorite(FilmeDetalhes: Filme){
+    fun toggleFavorite(filmeDetalhes: Filme){
         viewModelScope.launch(Dispatchers.IO) {
             if (isFavorite.value){
                 repository.removeFavorite(id)
             } else {
                 val filmeFavorito = Filme(
-                    id = FilmeDetalhes.id,
-                    title = FilmeDetalhes.title,
-                    year = FilmeDetalhes.year,
-                    genre = FilmeDetalhes.genre ?: "",
-                    plot = FilmeDetalhes.plot ?: "Sem sinopse disponível.",
-                    rating = FilmeDetalhes.rating ?: "",
-                    poster = FilmeDetalhes.poster ?: ""
+                    id = filmeDetalhes.id,
+                    title = filmeDetalhes.title,
+                    year = filmeDetalhes.year,
+                    genre = filmeDetalhes.genre ?: "",
+                    plot = filmeDetalhes.plot ?: "Sem sinopse disponível.",
+                    rating = filmeDetalhes.rating ?: "",
+                    poster = filmeDetalhes.poster ?: ""
                 )
                 repository.addFavorite(filmeFavorito)
             }
